@@ -1,6 +1,7 @@
 package base;
 
 import common.BasePage;
+import common.PageUtil;
 import models.dashboard.DashboardPage;
 import models.login.LoginPage;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +27,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void loadApplication() {
-        driver.get(DEMOQA_URL);
+        PageUtil.navigateToUrl(driver, DEMOQA_URL);
         dashboardPage = new DashboardPage(driver);
     }
 
