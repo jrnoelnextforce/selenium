@@ -9,9 +9,15 @@ public class JavaScriptUtility {
 
     private JavaScriptUtility () {}
 
-    public static void scrollToElement(WebDriver driver, By locator) {
+    public static void scrollToElementJS(WebDriver driver, By locator) {
         WebElement element = driver.findElement(locator);
         String scrollScript = "arguments[0].scrollIntoView(true);";
         ((JavascriptExecutor) driver).executeScript(scrollScript, element);
+    }
+
+    public static void clickElementJS(WebDriver driver, By locator) {
+        WebElement element = driver.findElement(locator);
+        String clickScript = "arguments[0].click();";
+        ((JavascriptExecutor) driver).executeScript(clickScript, element);
     }
 }

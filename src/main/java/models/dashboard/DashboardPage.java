@@ -1,13 +1,11 @@
 package models.dashboard;
 
 import common.BasePage;
-import locators.dashboard.DashboardLocators;
 import models.dashboard.forms.FormsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-import static common.JavaScriptUtility.scrollToElement;
+import static common.JavaScriptUtility.scrollToElementJS;
 
 public class DashboardPage extends BasePage {
 
@@ -17,12 +15,8 @@ public class DashboardPage extends BasePage {
         super(driver);
     }
 
-    /*public WebElement getHeaderTitle() {
-        return findElement(DashboardLocators.headerTitle);
-    }*/
-
     public FormsPage navigateToFormsCard() {
-        scrollToElement(driver,formsCard);
+        scrollToElementJS(driver,formsCard);
         clickElement(formsCard);
         return new FormsPage(driver);
     }

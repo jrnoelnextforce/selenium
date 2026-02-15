@@ -14,7 +14,7 @@ public abstract class BasePage {
     protected WebDriverWait wait;
 
     private static final boolean SLOW_MODE = true;
-    private static final int SLOW_MODE_DELAY_MS = 700;
+    private static final int SLOW_MODE_DELAY_MS = 1000;
 
     protected BasePage(WebDriver driver) {
         this.driver = driver;
