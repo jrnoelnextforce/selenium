@@ -2,7 +2,7 @@ package login;
 
 import base.BaseTest;
 import models.product.ProductPage;
-import org.testng.Assert;
+import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 
 public class LoginSeleniumTest extends BaseTest {
@@ -13,7 +13,7 @@ public class LoginSeleniumTest extends BaseTest {
         loginPage.enterPassword("secret_sauce");
 
         ProductPage productPage = loginPage.clickLoginButton();
-        Assert.assertTrue(productPage.isProductHeaderTitleDisplayed());
+        assertTrue(productPage.isProductHeaderTitleDisplayed());
     }
 
     @Test
@@ -23,6 +23,6 @@ public class LoginSeleniumTest extends BaseTest {
         loginPage.clickLoginButton();
 
         String expectedErrorMessage = "Epic sadface: Username and password do not match any user in this service";
-        Assert.assertEquals(loginPage.getErrorMessage(), expectedErrorMessage);
+        assertEquals(loginPage.getErrorMessage(), expectedErrorMessage);
     }
 }

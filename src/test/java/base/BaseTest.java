@@ -1,25 +1,33 @@
 package base;
 
 import common.BasePage;
+import models.dashboard.DashboardPage;
 import models.login.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
     protected WebDriver driver;
     protected LoginPage loginPage;
-    private String url = "https://www.saucedemo.com/";
+    protected DashboardPage dashboardPage;
+    private static final String DEMOQA_URL = "https://demoqa.com/";
 
     @BeforeClass
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get(url);
+        //loginPage = new LoginPage(driver);
 
-        loginPage = new LoginPage(driver);
+    }
+
+    @BeforeMethod
+    public void loadApplication() {
+        driver.get(DEMOQA_URL);
+        dashboardPage = new DashboardPage(driver);
     }
 
     @AfterClass(alwaysRun = true)
