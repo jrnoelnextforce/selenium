@@ -35,6 +35,7 @@ public class BaseTest {
     public void tearDown() {
         try{
             if (driver != null) {
+                Thread.sleep(2000);
                 driver.quit();
             }
         } catch (Exception e) {

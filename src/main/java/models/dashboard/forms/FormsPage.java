@@ -12,7 +12,7 @@ public class FormsPage extends DashboardPage {
         super(driver);
     }
 
-    public PracticeFormPage clickToPracticeForm() {
+    public PracticeFormPage clickPracticeForm() {
         clickElement(practiceFormMenuItem);
         return new PracticeFormPage(driver);
     }
