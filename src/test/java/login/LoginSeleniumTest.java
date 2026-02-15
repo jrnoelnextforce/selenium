@@ -1,51 +1,28 @@
 package login;
 
-import models.dashboard.DashboardPage;
-import models.login.LoginPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import base.BaseTest;
+import models.product.ProductPage;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
-public class LoginSeleniumTest {
-
-    WebDriver driver;
-    WebDriverWait wait;
-
-    @BeforeClass
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        try{
-            if (driver != null) {
-                driver.quit();
-            }
-        } catch (Exception e) {
-            System.out.println("Exception during driver teardown: " + e.getMessage());
-        }
-    }
+public class LoginSeleniumTest extends BaseTest {
 
     @Test
     public void shouldLoginSuccessfullyWithValidCredentials() {
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterUsername("Admin");
-        loginPage.enterPassword("admin123");
+        ProductPage productPage = loginPage.clickLoginButton();
+        Assert.assertTrue(productPage.isProductHeaderTitleDisplayed());
+    }
+
+    @Test
+    public void shouldShowErrorMessageWithInvalidCredentials() {
+        loginPage.enterUsername("invalid_user");
+        loginPage.enterPassword("invalid_password");
         loginPage.clickLoginButton();
 
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        String headerText = dashboardPage.getHeaderTitle().getText();
-        Assert.assertEquals(headerText, "Dashboard", "Login failed or Dashboard page not displayed.");
+        String expectedErrorMessage = "Epic sadface: Username and password do not match any user in this service";
+        Assert.assertEquals(loginPage.getErrorMessage(), expectedErrorMessage);
     }
 }
