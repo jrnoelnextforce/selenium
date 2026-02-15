@@ -14,4 +14,13 @@ public class FormsTest extends BaseTest {
         practiceFormPage.selectMaleGender();
         assertTrue(practiceFormPage.isMaleGenderRadioButtonSelected(), " \n Male radio button should be selected after clicking on it. \n ");
     }
+
+    @Test
+    public void shouldSelectAndDeselectSportsHobbiesCheckbox() {
+        PracticeFormPage practiceFormPage = dashboardPage.navigateToFormsCard().clickToPracticeForm();
+        practiceFormPage.selectSportsHobbies();
+        assertTrue(practiceFormPage.isSportsHobbiesSelected(), " \n Sports hobbies checkbox should be selected after clicking on it. \n ");
+        practiceFormPage.deselectSportsHobbies();
+        assertFalse(practiceFormPage.isSportsHobbiesSelected(), " \n Sports hobbies checkbox should be deselected after clicking on it again. \n ");
+    }
 }
