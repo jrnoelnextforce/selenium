@@ -27,7 +27,9 @@ public class ElementsTest extends BaseTest {
         LinksPage linksPage = dashboardPage.navigateToElementsCard().clickLinks();
         linksPage.clickNotFoundLink();
         String actualText = linksPage.getResponseCodeText();
-        assertTrue(actualText.contains(expectedText) && actualText.contains(expectedStatusCode), " \n The text displayed after clicking the Not Found link should contain '" + expectedText + "' and '" + expectedStatusCode +"'. \n ");
+        assertTrue(actualText.contains(expectedText) && actualText.contains(expectedStatusCode),
+                " \n The text displayed after clicking the Not Found link should contain '" + expectedText + "' and '" + expectedStatusCode +"'. \n " +
+                        "Actual result: " + actualText);
     }
 
 }
