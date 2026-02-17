@@ -17,6 +17,7 @@ public class ElementsTest extends BaseTest {
         webTablesPage.enterAgeInRegistrationModal(expectedAge);
         webTablesPage.clickSubmitButtonInRegistrationModal();
         String actualAge = webTablesPage.getAgeFromTableForEmail(email);
+        //assertTrue( false, "Error Message");
         assertEquals(actualAge, expectedAge, " \n Age should be updated to " + expectedAge + " after editing and submitting the registration form. \n ");
     }
 

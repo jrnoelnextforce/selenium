@@ -3,6 +3,7 @@ package models.dashboard;
 import common.BasePage;
 import models.dashboard.elements.ElementsPage;
 import models.dashboard.forms.FormsPage;
+import models.dashboard.widgets.WidgetsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,6 +13,7 @@ public class DashboardPage extends BasePage {
 
     private static final By formsCard = By.xpath("//div[@class='card-body']/h5[text()='Forms']");
     private static final By elementsCard = By.xpath("//div[@class='card-body']/h5[text()='Elements']");
+    private static final By widgetsCard = By.xpath("//div[@class='card-body']/h5[text()='Widgets']");
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -27,5 +29,11 @@ public class DashboardPage extends BasePage {
         scrollToElementJS(driver, elementsCard);
         clickElement(elementsCard);
         return new ElementsPage(driver);
+    }
+
+    public WidgetsPage navigateToWidgetsCard() {
+        scrollToElementJS(driver, widgetsCard);
+        clickElement(widgetsCard);
+        return new WidgetsPage(driver);
     }
 }
