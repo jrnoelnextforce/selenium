@@ -1,6 +1,7 @@
 package models.dashboard;
 
 import common.BasePage;
+import models.dashboard.alertframewindows.AlertsFrameWindowsPage;
 import models.dashboard.elements.ElementsPage;
 import models.dashboard.forms.FormsPage;
 import models.dashboard.widgets.WidgetsPage;
@@ -14,6 +15,7 @@ public class DashboardPage extends BasePage {
     private static final By formsCard = By.xpath("//div[@class='card-body']/h5[text()='Forms']");
     private static final By elementsCard = By.xpath("//div[@class='card-body']/h5[text()='Elements']");
     private static final By widgetsCard = By.xpath("//div[@class='card-body']/h5[text()='Widgets']");
+    private static final By alertsFrameWindowsCard = By.xpath("//div[@class='card-body']/h5[text()='Alerts, Frame & Windows']");
 
     public DashboardPage(WebDriver driver) {
         super(driver);
@@ -35,5 +37,11 @@ public class DashboardPage extends BasePage {
         scrollToElementJS(driver, widgetsCard);
         clickElement(widgetsCard);
         return new WidgetsPage(driver);
+    }
+
+    public AlertsFrameWindowsPage navigateToAlertsFrameWindowsCard() {
+        scrollToElementJS(driver, alertsFrameWindowsCard);
+        clickElement(alertsFrameWindowsCard);
+        return new AlertsFrameWindowsPage(driver);
     }
 }
