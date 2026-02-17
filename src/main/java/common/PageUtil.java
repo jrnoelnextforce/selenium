@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import java.sql.DriverManager;
-
 public final class PageUtil {
 
     private PageUtil() {
@@ -39,6 +37,26 @@ public final class PageUtil {
     public static void deselectOptionByIndex(@NonNull WebDriver driver, By selectLocator, int index) {
         Select select = new Select(driver.findElement(selectLocator));
         select.deselectByIndex(index);
+    }
+
+    private static WebDriver.TargetLocator switchTo(WebDriver driver) {
+        return driver.switchTo();
+    }
+
+    public static String getAlertText(WebDriver driver) {
+        return switchTo(driver).alert().getText();
+    }
+
+    public static void acceptAlert(WebDriver driver) {
+        switchTo(driver).alert().accept();
+    }
+
+    public static void dismissAlert(WebDriver driver) {
+        switchTo(driver).alert().dismiss();
+    }
+
+    public static void sendKeysToAlert(WebDriver driver, String text) {
+        switchTo(driver).alert().sendKeys(text);
     }
 
 }
